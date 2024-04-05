@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a282db01006310a4485374497b16eed6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Prefabs/Seats.prefab
+  uploadId: 542930

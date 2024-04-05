@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: afbc536ee1f169049a48ec918e67b1e8
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Prefabs/Windows.prefab
+  uploadId: 542930

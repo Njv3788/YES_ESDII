@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e96d061469b36a74ba587cce050f8663
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Prefabs/TennisBall.prefab
+  uploadId: 542930

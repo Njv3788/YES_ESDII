@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 17fde9c7911c4df428b5023b30b9172e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Prefabs/DoublesNet.prefab
+  uploadId: 542930

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7d0bffaccceae564cbfac525c0b3dc48
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/DemoScene/CentreCourt/Main Camera Profile.asset
+  uploadId: 542930

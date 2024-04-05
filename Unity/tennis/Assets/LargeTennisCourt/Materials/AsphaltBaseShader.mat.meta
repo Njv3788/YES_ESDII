@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 582bb1440f5f10243a6d09635ad4d05d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Materials/AsphaltBaseShader.mat
+  uploadId: 542930

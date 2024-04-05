@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: cbc7c12e4cd30324e86e3b9cfbe9e273
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Materials/WhiteChalkDustShader.mat
+  uploadId: 542930

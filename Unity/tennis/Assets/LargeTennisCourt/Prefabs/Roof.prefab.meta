@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e3e2752fbeed8054e9eb23cc1d36ba4a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Prefabs/Roof.prefab
+  uploadId: 542930

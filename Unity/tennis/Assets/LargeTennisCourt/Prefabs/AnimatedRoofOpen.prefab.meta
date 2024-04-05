@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b97c0d8b5b029b747bc7e669bfb777cf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/Prefabs/AnimatedRoofOpen.prefab
+  uploadId: 542930

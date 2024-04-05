@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cef3f0dc4c9087143b7b58d4269211c8
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 108225
+  packageName: Tennis Court
+  packageVersion: 2.0
+  assetPath: Assets/LargeTennisCourt/DemoScene/CentreCourt.unity
+  uploadId: 542930
