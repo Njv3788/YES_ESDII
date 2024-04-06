@@ -120,6 +120,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &42873042 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 33893929662411408, guid: e96d061469b36a74ba587cce050f8663, type: 3}
+  m_PrefabInstance: {fileID: 963061649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &42873046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 42873042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d71ebbddc0d80245a4ae5dbd1d32cc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Port: 55001
+  ObjectName: TennisBall
 --- !u!1001 &158293356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -563,6 +582,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 33893929662411408, guid: e96d061469b36a74ba587cce050f8663, type: 3}
+      propertyPath: m_TagString
+      value: TennisBall
+      objectReference: {fileID: 0}
     - target: {fileID: 807194323671164970, guid: e96d061469b36a74ba587cce050f8663, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -610,7 +633,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 33893929662411408, guid: e96d061469b36a74ba587cce050f8663, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 42873046}
   m_SourcePrefab: {fileID: 100100000, guid: e96d061469b36a74ba587cce050f8663, type: 3}
 --- !u!1001 &1136380831
 PrefabInstance:
@@ -759,13 +785,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314527808}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.12255758, y: 0.7862044, z: -0.1653628, w: 0.58268124}
-  m_LocalPosition: {x: -0.54803085, y: 0.49441797, z: 2.1404142}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 20.51, z: 1.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 146.567, y: 68.569, z: 179.29}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &1314527813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1580,6 +1606,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 1767691072}
   - {fileID: 1314527812}
+  - {fileID: 963061649}
   - {fileID: 1663019519}
   - {fileID: 2128962191}
   - {fileID: 636566175}
@@ -1589,7 +1616,6 @@ SceneRoots:
   - {fileID: 1749910026}
   - {fileID: 740940553}
   - {fileID: 1478386459}
-  - {fileID: 963061649}
   - {fileID: 1497611370}
   - {fileID: 1996519521}
   - {fileID: 1552397309}
