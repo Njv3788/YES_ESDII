@@ -15,6 +15,7 @@ public class Server : MonoBehaviour {
 
   //Camera Variables
   private GameObject MainCam;
+  private GameObject Ball;
   RenderTexture CameraRender;
   byte[] EncodedPng;
   int Height;
@@ -58,6 +59,11 @@ public class Server : MonoBehaviour {
     if(this.MainCam == null)
       this.MainCam = GameObject.FindGameObjectWithTag("MainCamera");
 
+    if(this.Ball == null)
+    {
+       this.Ball = GameObject.FindGameObjectWithTag("Ball");
+    }
+
     if (!serverStarted)
       return;
     if(clients.Count == 0)
@@ -82,7 +88,7 @@ public class Server : MonoBehaviour {
             s.Read(RecievedString, 0, sizeof(float)*8);
             myFloat = ConvertBytes2Float(RecievedString);
 
-            moveCamera(myFloat);
+            moveBall(myFloat);
                       
             StartCoroutine(SendCamCapture(clients[c], MainCam.GetComponent<Camera>(), myFloat[0].ToString(), myFloat[1].ToString()));
           }
@@ -179,7 +185,7 @@ public class Server : MonoBehaviour {
   // right           y        x
   // down            z        -y
   
-  private void moveCamera(float[] pose){
+  private void moveBall(float[] pose){
     GameObject ClientObj = GameObject.Find(ObjectName);
     // x,y,z,yaw[z],pitch[y],roll[x]
     float x_trans = pose[2];
