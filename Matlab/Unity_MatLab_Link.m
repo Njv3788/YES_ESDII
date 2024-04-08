@@ -22,7 +22,7 @@ while ~feof(serve1_postions)
     
     
     
-    coordinates = str2num(line);  % Assuming coordinates are separated by spaces
+    coordinates = str2num(line);  %coordinates are separated by spaces
     
     x = coordinates(1);
     y = coordinates(2);
