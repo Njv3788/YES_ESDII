@@ -11,7 +11,7 @@ f = 6; % focal length [mm]
 ps = 0.006;
 
        
-coordinates = [0,.1,1.5];  %coordinates are separated by spaces
+coordinates = [0,.1,1];  %coordinates are separated by spaces
 
 x = coordinates(1);
 y = coordinates(2);
