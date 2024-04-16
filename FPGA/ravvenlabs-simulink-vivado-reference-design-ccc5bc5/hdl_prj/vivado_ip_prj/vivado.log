@@ -1,0 +1,47 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Tue Apr 16 16:18:22 2024
+# Process ID: 8448
+# Current directory: C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent18436 C:\Users\jonab\Desktop\ESDII\ravvenlabs-simulink-vivado-reference-design-ccc5bc5\hdl_prj\vivado_ip_prj\vivado_prj.xpr
+# Log file: C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/vivado.log
+# Journal file: C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/vivado_prj.xpr
+INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter.
+Current project path is 'C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj'
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/ipcore'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'.
+open_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:11 . Memory (MB): peak = 877.023 ; gain = 180.195
+update_compile_order -fileset sources_1
+open_bd_design {C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/src/design_1/design_1.bd}
+Adding component instance block -- xilinx.com:ip:axi_vdma:6.3 - axi_vdma_1
+Adding component instance block -- xilinx.com:ip:axi_vdma:6.3 - axi_vdma_2
+Adding component instance block -- xilinx.com:ip:axi_vdma:6.3 - axi_vdma_3
+Adding component instance block -- xilinx.com:ip:axis_broadcaster:1.1 - axis_broadcaster_0
+Adding component instance block -- xilinx.com:user:cam_axi:1.0 - cam_axi_1
+Adding component instance block -- xilinx.com:user:cam_axi:1.0 - cam_axi_2
+Adding component instance block -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding component instance block -- xilinx.com:ip:axi_interconnect:2.1 - ps7_0_axi_periph
+Adding component instance block -- xilinx.com:ip:axi_crossbar:2.1 - xbar
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Adding component instance block -- xilinx.com:user:read_trigger:1.0 - read_trigger_0
+Adding component instance block -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_0_50M
+Adding component instance block -- xilinx.com:ip:smartconnect:1.0 - smartconnect_0
+Adding component instance block -- xilinx.com:ip:smartconnect:1.0 - smartconnect_1
+Adding component instance block -- xilinx.com:ip:conv_core_ip:1.0 - conv_core_ip_0
+Successfully read diagram <design_1> from BD file <C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/src/design_1/design_1.bd>
+open_bd_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 989.938 ; gain = 86.469

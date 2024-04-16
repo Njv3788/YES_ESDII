@@ -1,0 +1,145 @@
+/*
+
+Xilinx Vivado v2019.1 (64-bit) [Major: 2019, Minor: 1]
+SW Build: 2552052 on Fri May 24 14:49:42 MDT 2019
+IP Build: 2548770 on Fri May 24 18:01:18 MDT 2019
+
+Process ID (PID): 8448
+License: Customer
+
+Current time: 	Tue Apr 16 16:18:36 EDT 2024
+Time zone: 	Eastern Standard Time (America/New_York)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 8
+
+Screen size: 3840x2160
+Screen resolution (DPI): 250
+Available screens: 1
+Available disk space: 570 GB
+Default font: family=Segoe UI,name=Segoe UI,style=plain,size=30
+
+Java version: 	9.0.4 64-bit
+Java home: 	C:/Xilinx/Vivado/2019.1/tps/win64/jre9.0.4
+Java executable location: 	C:/Xilinx/Vivado/2019.1/tps/win64/jre9.0.4/bin/java.exe
+Java initial memory (-Xms): 	128 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	jonab
+User home directory: C:/Users/jonab
+User working directory: C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2019.1
+RDI_DATADIR: C:/Xilinx/Vivado/2019.1/data
+RDI_BINDIR: C:/Xilinx/Vivado/2019.1/bin
+
+Vivado preferences file location: C:/Users/jonab/AppData/Roaming/Xilinx/Vivado/2019.1/vivado.xml
+Vivado preferences directory: C:/Users/jonab/AppData/Roaming/Xilinx/Vivado/2019.1/
+Vivado layouts directory: C:/Users/jonab/AppData/Roaming/Xilinx/Vivado/2019.1/layouts
+PlanAhead jar file location: 	C:/Xilinx/Vivado/2019.1/lib/classes/planAhead.jar
+Vivado log file location: 	C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/vivado.log
+Vivado journal file location: 	C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/vivado.jou
+Engine tmp dir: 	C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/.Xil/Vivado-8448-DESKTOP-RTM843K
+
+Xilinx Environment Variables
+----------------------------
+XILINX: C:/Xilinx/Vivado/2019.1/ids_lite/ISE
+XILINX_DSP: C:/Xilinx/Vivado/2019.1/ids_lite/ISE
+XILINX_PLANAHEAD: C:/Xilinx/Vivado/2019.1
+XILINX_SDK: C:/Xilinx/SDK/2019.1
+XILINX_VIVADO: C:/Xilinx/Vivado/2019.1
+XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2019.1
+
+
+GUI allocated memory:	200 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 681 MB
+
+Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 145 MB (+149952kb) [00:00:07]
+// [Engine Memory]: 609 MB (+486918kb) [00:00:07]
+// by (cl):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\jonab\Desktop\ESDII\ravvenlabs-simulink-vivado-reference-design-ccc5bc5\hdl_prj\vivado_ip_prj\vivado_prj.xpr. Version: Vivado v2019.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// Tcl Message: open_project C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/vivado_prj.xpr 
+// Tcl Message: INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. Current project path is 'C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj' 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 726 MB. GUI used memory: 82 MB. Current time: 4/16/24, 4:18:38 PM EDT
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: PROJECT_NEW
+// [Engine Memory]: 830 MB (+200301kb) [00:00:17]
+// WARNING: HEventQueue.dispatchEvent() is taking  3442 ms.
+// Tcl Message: open_project C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/vivado_prj.xpr 
+// Tcl Message: INFO: [ProjectBase 1-489] The host OS only allows 260 characters in a normal path. The project is stored in a path with more than 80 characters. If you experience issues with IP, Block Designs, or files not being found, please consider moving the project to a location with a shorter path. Alternately consider using the OS subst command to map part of the path to a drive letter. Current project path is 'C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj' 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/ipcore'. INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2019.1/data/ip'. 
+// Tcl Message: open_project: Time (s): cpu = 00:00:20 ; elapsed = 00:00:11 . Memory (MB): peak = 877.023 ; gain = 180.195 
+// Project name: vivado_prj; location: C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj; part: xc7z020clg400-3
+dismissDialog("Open Project"); // by (cl)
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// Tcl Message: update_compile_order -fileset sources_1 
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1_wrapper(STRUCTURE) (design_1_wrapper.vhd)]", 1); // B (F, cl)
+// PAPropertyPanels.initPanels (design_1.bd) elapsed time: 0.2s
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1_wrapper(STRUCTURE) (design_1_wrapper.vhd), design_1_i : design_1 (design_1.bd)]", 2, true); // B (F, cl) - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, design_1_wrapper(STRUCTURE) (design_1_wrapper.vhd), design_1_i : design_1 (design_1.bd)]", 2, true, false, false, false, false, true); // B (F, cl) - Double Click - Node
+// by (cl):  Open Block Design : addNotify
+// TclEventType: LOAD_FEATURE
+// Tcl Message: open_bd_design {C:/Users/jonab/Desktop/ESDII/ravvenlabs-simulink-vivado-reference-design-ccc5bc5/hdl_prj/vivado_ip_prj/src/design_1/design_1.bd} 
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: LOAD_FEATURE
+// TclEventType: RSB_PROPERTY_CHANGE
+// TclEventType: RSB_OPEN_DIAGRAM
+// [Engine Memory]: 886 MB (+14514kb) [00:00:33]
+// HMemoryUtils.trashcanNow. Engine heap size: 915 MB. GUI used memory: 92 MB. Current time: 4/16/24, 4:19:03 PM EDT
+// TclEventType: RSB_OPEN_DIAGRAM
+// [Engine Memory]: 965 MB (+36662kb) [00:00:38]
+// WARNING: HEventQueue.dispatchEvent() is taking  2288 ms.
+// TclEventType: RSB_CONNECTION_CHANGE
+// [GUI Memory]: 156 MB (+3501kb) [00:00:40]
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // v
+// TclEventType: RSB_CONNECTION_CHANGE
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// TclEventType: RSB_LOCK_CHANGE
+// TclEventType: RSB_CHANGE_CURRENT_DIAGRAM
+// Tcl Message: open_bd_design: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 989.938 ; gain = 86.469 
+dismissDialog("Open Block Design"); // by (cl)
+// Elapsed time: 873 seconds
+selectMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // Z (q, cl)
+selectMenu(PAResourceItoN.MainMenuMgr_PROJECT, "Project"); // ae (cl)
+selectMenu(PAResourceItoN.MainMenuMgr_OPEN_RECENT_PROJECT, "Open Recent"); // ae (cl)
+dismissMenu(PAResourceItoN.MainMenuMgr_FILE, "File"); // Z (q, cl)
+// HMemoryUtils.trashcanNow. Engine heap size: 976 MB. GUI used memory: 95 MB. Current time: 4/16/24, 4:49:03 PM EDT
