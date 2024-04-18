@@ -2,11 +2,11 @@
     clc
     clear
 %% Load test images
-    ball_n = imread("testImage_ball_n.jpg");
-    ball_0 = imread("testImage_ball_0.jpg");
-    ball_1 = imread("testImage_ball_1.jpg");
-    ball_2 = imread("testImage_ball_2.jpg");
-    ball_3 = imread("testImage_ball_3.jpg");
+    ball_n = imread("testImages/testImage_ball_n.jpg");
+    ball_0 = imread("testImages/testImage_ball_0.jpg");
+    ball_1 = imread("testImages/testImage_ball_1.jpg");
+    ball_2 = imread("testImages/testImage_ball_2.jpg");
+    ball_3 = imread("testImages/testImage_ball_3.jpg");
 %% Convert RGB to Grey 
     ball_n = rgb2gray(ball_n);
     ball_0 = rgb2gray(ball_0);
