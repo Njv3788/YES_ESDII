@@ -11,16 +11,44 @@
     % To uint32
     testU32_n = uint32(testG_n);
     testU32_0 = uint32(testG_0);
-%% Preform Sumations
-    x_su32 = padarray([sum(testU32_n,1,"native") ;sum(testU32_0,1,"native") ], ...
-                      [0,1024-size(testU32_n,2)],0,"post");
-    y_su32 = padarray([sum(testU32_n,2,"native")';sum(testU32_0,2,"native")'], ...
-                      [0,1024-size(testU32_n,1)],0,"post");
-    su32 = [x_su32;y_su32];
-
+%% Preform Sumations & bit shift
+    x_sG = [sum(testG_n,1,"double") ;sum(testG_0,1,"double") ]; 
+    y_sG = [sum(testG_n,2,"double")';sum(testG_0,2,"double")']; 
+    x_su32 = [sum(testU32_n,1,"native") ;sum(testU32_0,1,"native") ];  
+    y_su32 = [sum(testU32_n,2,"native")';sum(testU32_0,2,"native")'];
+    x_su16 = uint16(bitshift(x_su32,-2));
+    y_su16 = uint16(bitshift(y_su32,-2));
+    x_su8 =  uint8(bitshift(x_su16,-8));
+    y_su8 =  uint8(bitshift(y_su16,-8));
+%% Pad the Sumations
+    x_psG = padarray(x_sG,[0,1024-size(testG_n,2)],0,"post");
+    y_psG = padarray(y_sG,[0,1024-size(testG_n,1)],0,"post");
+    x_psu32 = padarray(x_su32,[0,1024-size(testU32_n,2)],0,"post");
+    y_psu32 = padarray(y_su32,[0,1024-size(testU32_n,1)],0,"post");
+    x_psu16 = padarray(x_su16,[0,1024-size(testU32_n,2)],0,"post");
+    y_psu16 = padarray(y_su16,[0,1024-size(testU32_n,1)],0,"post");
+    x_psu8 = padarray(x_su8,[0,1024-size(testU32_n,2)],0,"post");
+    y_psu8 = padarray(y_su8,[0,1024-size(testU32_n,1)],0,"post");
+%% Catenate for Math
+    sG = [x_psG;y_psG];
+    su32 = [x_psu32;y_psu32];
+    su16 = [x_psu16;y_psu16];
+    su8 = [x_psu8;y_psu8];
+%% Preform Subtraction
+    dG = sub_com(sG);
     du32 = sub_com(su32);
+    du16 = sub_com(su16);
+    du8 = sub_com(su8);
+%% Plot the differences
+    plot_com(dG);
     plot_com(du32);
-    centroid = locate(du32);
+    plot_com(du16);
+    plot_com(du8);
+%% Locate Centroids
+    centroid_d = locate(dG);
+    centroid_u32 = locate(du32);
+    centroid_u16 = locate(du16);
+    centroid_u8 = locate(du8);
 %% Plot Function
 function plot_com(array)
     figure;
@@ -39,7 +67,7 @@ end
 %% Differnce Function 
 function array_out = sub_com(array_in)
     array_size = size(array_in);
-    array_out = zeros(array_size./[2,1]);
+    array_out = zeros(array_size./[2,1],class(array_in));
     switch(array_size(1))
         case 4
             array_out(1,:) = array_in(1,:) - array_in(2,:);
