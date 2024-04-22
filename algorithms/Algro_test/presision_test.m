@@ -22,7 +22,7 @@
        
         testImageGray = rgb2gray(testImageRGB);
         character = findCharacter(testImageGray,size_t,type);
-        normalized = int32(normalize(character,size_t,shift,type));
+        normalized = double(normalize(character,size_t,shift,type));
         
         if(calibrate == 1)
             Initial_normalized = normalized;
