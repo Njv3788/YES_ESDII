@@ -21,7 +21,7 @@ while ~feof(serve1_postions)
     end
     
     
-    
+   
     coordinates = str2num(line);  %coordinates are separated by spaces
     
     x = coordinates(1);

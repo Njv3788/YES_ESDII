@@ -4,7 +4,7 @@ classdef methodModual
     
     properties (Access = private)
         method;
-        type = "UnInit";
+        type = "unInit";
     end
     
     methods (Access = public)
@@ -12,7 +12,7 @@ classdef methodModual
              try
                  switch(method)
                      case "MATLAB"
-                         obj.method =  @(I,S,C) MATLABmethod(I,S,C);
+                         obj.method =  @(L,R,S,C) MATLABmethod(L,R,S,C);
                          obj.type = "MATLAB";
                      case "Zynq"
                          obj.type = "Zynq";
@@ -30,10 +30,21 @@ classdef methodModual
             type = obj.type;
         end
 
-        function calibrate(obj,image)
+        function calibrate(obj,leftImage,rightImage)
             switch(obj.type)
                 case "MATLAB"
-                    obj.method(image,1024,1);
+                    obj.method(leftImage,rightImage,[-2,-2],1);
+                case "Zynq"
+                case "OpenCV"
+                otherwise
+                    fprintf("ERROR : UNINIT\n");
+            end
+        end
+        
+        function centriod = track(obj,leftImage,rightImage)
+            switch(obj.type)
+                case "MATLAB"
+                    centriod = obj.method(leftImage,rightImage,[-2,-2],0);
                 case "Zynq"
                 case "OpenCV"
                 otherwise
