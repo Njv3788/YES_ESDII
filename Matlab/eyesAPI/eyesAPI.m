@@ -1,5 +1,5 @@
-classdef Eyes_APIModulal
-    %  EYES_TESTMODULAL 
+classdef eyesAPI
+    %  EYES_API
 
     properties(Access = public)
         camera; 
@@ -7,7 +7,7 @@ classdef Eyes_APIModulal
     end
 
     methods(Access = public)
-        function  obj = Eyes_APIModulal(method,camera)
+        function  obj = eyesAPI(method,camera)
            obj.camera = cameraModual(camera);
            obj.method = methodModual(method);
         end
@@ -16,14 +16,14 @@ classdef Eyes_APIModulal
             
             switch(obj.camera.getType())
                 case "Test"
-                    RGBimage = obj.camera.captureImage(file);
+                    [leftImage,rightImage] = obj.camera.captureImage(file);
                 otherwise
                     return; 
             end 
             
             switch(obj.method.getType())
                 case "MATLAB"
-                    obj.method.calibrate(RGBimage,RGBimage);
+                    obj.method.calibrate(leftImage,rightImage);
                 otherwise
                     return;
             end
