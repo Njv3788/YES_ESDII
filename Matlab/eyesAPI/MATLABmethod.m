@@ -3,7 +3,7 @@ function center = MATLABmethod(leftImageRGB,rightImageRGB,shift,calibrate)
     persistent initial;
     type = "uint32";
     size_t = 1024;
-    
+  
     leftImageGray = rgb2gray(leftImageRGB);    % convert to grayscale
     rightImageGray = rgb2gray(rightImageRGB);  % convert to grayscale
     leftImageGrayU32 = uint32(leftImageGray);  % convert unit8 to uint32

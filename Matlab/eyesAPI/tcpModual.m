@@ -13,6 +13,7 @@ classdef tcpModual
             switch(client)
                 case "Unity"
                     obj.link = @(C,P) unityLink(C,P);
+                    obj.type = "Unity";
                 otherwise 
             end
         end
@@ -33,7 +34,7 @@ classdef tcpModual
         function varargout = runLink(obj,varagin)
             switch(obj.type)
                 case "Unity"
-                    pose = varagin{1};
+                    pose = varagin;
                     varargout{1} = obj.link(obj.client,pose);
                 otherwise 
             end

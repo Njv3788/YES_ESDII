@@ -9,21 +9,17 @@ classdef methodModual
     
     methods (Access = public)
         function obj = methodModual(method)
-             try
-                 switch(method)
-                     case "MATLAB"
-                         obj.method =  @(L,R,S,C) MATLABmethod(L,R,S,C);
-                         obj.type = "MATLAB";
-                     case "Zynq"
-                         obj.type = "Zynq";
-                     case "OpenCV"
-                         obj.type = "OpenCV";
-                     otherwise
-                         fprintf("ERROR : UNRECONIZED METHOD");
-                 end
-             catch 
-                 fprintf("ERROR PROBLEM OCCURED RUNNING methodModual\n")
-             end
+            switch(method)
+                case "MATLAB"
+                    obj.method =  @(L,R,S,C) MATLABmethod(L,R,S,C);
+                    obj.type = "MATLAB";
+                case "Zynq"
+                    obj.type = "Zynq";
+                case "OpenCV"
+                    obj.type = "OpenCV";
+                otherwise
+                    fprintf("ERROR : UNRECONIZED METHOD");
+            end
         end
 
         function type = getType(obj)
@@ -54,6 +50,7 @@ classdef methodModual
     end
 
     methods(Access = private)
+
     end
 end
 
