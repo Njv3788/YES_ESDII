@@ -12,31 +12,14 @@ classdef eyesAPI
            obj.method = methodModual(method);
         end
 
-        function calibrate(obj,file)
-            
-            switch(obj.camera.getType())
-                case "Test"
-                    [leftImage,rightImage] = obj.camera.captureImage(file);
-                otherwise
-                    return; 
-            end 
-            
-            switch(obj.method.getType())
-                case "MATLAB"
-                    obj.method.calibrate(leftImage,rightImage);
-                otherwise
-                    return;
-            end
+        function calibrate(obj,vargin)
+           [leftImage,rightImage] = obj.camera.captureImage(vargin);
+           obj.method.calibrate(leftImage,rightImage);
         end
 
-        function [center,leftImage,rightImage] = Track(obj,pose)
-            switch(obj.camera.getType())
-                case "Test"
-                    [leftImage,rightImage] = obj.camera.captureImage(pose);
-                    center = obj.method.track(leftImage,rightImage);
-                otherwise
-                    return; 
-            end 
+        function [center,leftImage,rightImage] = Track(obj,varagin)
+            [leftImage,rightImage] = obj.camera.captureImage(varagin);
+            center = obj.method.track(leftImage,rightImage);
         end
     end
 end

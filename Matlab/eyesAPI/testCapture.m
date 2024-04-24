@@ -1,5 +1,5 @@
-function [leftImage,rightImage] = testCapture(file)
-    leftImage = imread(file(1));
-    rightImage = imread(file(2));
+function [leftImage,rightImage] = testCapture(leftFile,rigthFile)
+    leftImage = imread(leftFile);
+    rightImage = imread(rigthFile);
 end
 

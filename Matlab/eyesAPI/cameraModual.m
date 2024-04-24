@@ -13,9 +13,10 @@ classdef cameraModual
                  switch(camera)
                      case "Unity"
                          obj.type = "Unity";
+                         obj.capture = @(P,C)unityCapture(P,C);
                      case "Test"
                          obj.type = "Test";
-                         obj.capture = @(pose)testCapture(pose);
+                         obj.capture = @(L,R)testCapture(L,R);
                      otherwise
                          fprintf("ERROR : UNRECONIZED CAMERA");
                  end
@@ -28,14 +29,16 @@ classdef cameraModual
             type = obj.type;
         end
         
-        function [leftImage,rightImage] = captureImage(obj,pose)
+        function [leftImage,rightImage] = captureImage(obj,varagin)
         % Use the objects capture to capture a image
         % Each the type of camera have different pose requirement 
         % Type = test  pose = [index (1:4)]
             switch(obj.type)
                 case "Unity"
                 case "Test"
-                    [leftImage,rightImage] = obj.capture(pose);
+                    leftFile = varagin{1};
+                    rightFile = varagin{2};
+                    [leftImage,rightImage]=obj.capture(leftFile,rightFile);
                 otherwise
                     fprintf("ERROR : UNRECONIZED CAMERA");
             end
