@@ -1,5 +1,5 @@
 function [leftImage,rightImage] = unityCapture(pose,client)
-    leftImage = unityLink(client,pose);
+    leftImage = client.runLink(pose);
     rightImage = leftImage;
 end
 

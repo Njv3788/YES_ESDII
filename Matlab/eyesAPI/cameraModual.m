@@ -29,15 +29,15 @@ classdef cameraModual
             type = obj.type;
         end
         
-        function [leftImage,rightImage] = captureImage(obj,varagin)
+        function [leftImage,rightImage] = captureImage(obj,varargin)
         % Use the objects capture to capture a image
         % Each the type of camera have different pose requirement 
         % Type = test  pose = [index (1:4)]
             switch(obj.type)
                 case "Unity"
                 case "Test"
-                    leftFile = varagin{1};
-                    rightFile = varagin{2};
+                    leftFile = varargin{1};
+                    rightFile = varargin{2};
                     [leftImage,rightImage]=obj.capture(leftFile,rightFile);
                 otherwise
                     fprintf("ERROR : UNRECONIZED CAMERA");
