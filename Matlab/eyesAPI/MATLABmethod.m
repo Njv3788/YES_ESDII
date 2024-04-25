@@ -1,5 +1,5 @@
 %% Function for the Algorithm
-function center = MATLABmethod(leftImageRGB,rightImageRGB,shift,calibrate)
+function center = MATLABmethod(calibrate,leftImageRGB,rightImageRGB,shift)
     persistent initial;
     type = "uint32";
     size_t = 1024;

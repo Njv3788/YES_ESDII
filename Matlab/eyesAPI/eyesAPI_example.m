@@ -5,23 +5,21 @@
 %     path = "../../algorithms/Algro_test/TestImages/testImage_";
 %     file = ["ball_n","ball_0","ball_2","ball_3"];
 %     tag = ".jpg";
-%     cnt = 1;
+%     method = @(C,S,L,R) MATLABmethod(C,S,L,R);
+%     camera = @(A,L,R) testCamera(A,L,R);
 % % Initialize
-%     api = eyesAPI("MATLAB","Test");
+%     api = eyesAPI(method,camera,[-2,-2],0);
 %     name = path+file(1)+tag;
 %     api.calibrate(name,name);
 % % Track
-%     while(2 >= cnt)
-%         for i = 2:4
-%             name = path+file(i)+tag;
-%             [C,leftImage,~] = api.track(name,name);
-%             figure(1);
-%             imshow(leftImage); 
-%             viscircles(C(:,1)', 3,'EdgeColor','b');
-%             pause(1)
-%         end
-%         cnt = cnt + 1;
-%     end
+%   for i = 2:4
+%       name = path+file(i)+tag;
+%       [C,leftImage,~] = api.track(name,name);
+%       figure(1);
+%       imshow(leftImage); 
+%       viscircles(C(:,1)', 3,'EdgeColor','b');
+%       pause(1)
+%   end
 %% Unity Example
     clc
     clear
@@ -29,8 +27,12 @@
     file = "../trajectories/serve2.dat";
     server_ip   = '127.0.0.1';     % IP address of the Unity Server
     server_port = 55001;           % Server Port of the Unity Sever
+    method = @(L,R,S,C) MATLABmethod(L,R,S,C);
+    mArg = [-2,-2];
+    camera = @(C,P) unityCamera(C,P);
+    cArg = @(T,P) unityLink(T,P);
 % Initialize
-    api = eyesAPI("MATLAB","Unity");
+    api = eyesAPI(method,camera,mArg,cArg);
     api = api.manageClient("Unity","Start",server_ip,server_port); 
     trajectory = importdata(file);
     api.calibrate([0,0,0,0,0,0]);
@@ -43,5 +45,3 @@
         viscircles(C(:,1)', 10,'EdgeColor','b');
     end
     api = api.manageClient("Unity","Stop");
-
-

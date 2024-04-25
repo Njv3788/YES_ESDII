@@ -4,53 +4,54 @@ classdef methodModual
     
     properties (Access = private)
         method;
-        type = "unInit";
+        arg
     end
     
     methods (Access = public)
-        function obj = methodModual(method)
-            switch(method)
-                case "MATLAB"
-                    obj.method =  @(L,R,S,C) MATLABmethod(L,R,S,C);
-                    obj.type = "MATLAB";
-                case "Zynq"
-                    obj.type = "Zynq";
-                case "OpenCV"
-                    obj.type = "OpenCV";
-                otherwise
-                    fprintf("ERROR : UNRECONIZED METHOD");
+        function obj = methodModual(method,arg)
+            if (0 == isa(method,'function_handle'))
+                msgID = 'methodModual:fail';
+                msgtxr = 'method must be a function handle';
+                ME = MException(msgID, msgtxr);
+                throw(ME)
             end
-        end
-
-        function type = getType(obj)
-            type = obj.type;
+            
+            obj.method =  method;
+            
+            if(0 ~= isa(arg,'function_handle'))
+                obj.arg = tcpModual(arg);
+            else
+                obj.arg = arg;
+            end
         end
 
         function calibrate(obj,leftImage,rightImage)
-            switch(obj.type)
-                case "MATLAB"
-                    obj.method(leftImage,rightImage,[-2,-2],1);
-                case "Zynq"
-                case "OpenCV"
-                otherwise
-                    fprintf("ERROR : UNINIT\n");
-            end
+            obj.method(1,leftImage,rightImage,obj.arg);
         end
         
         function centriod = track(obj,leftImage,rightImage)
-            switch(obj.type)
-                case "MATLAB"
-                    centriod = obj.method(leftImage,rightImage,[-2,-2],0);
-                case "Zynq"
-                case "OpenCV"
-                otherwise
-                    fprintf("ERROR : UNINIT\n");
+            centriod = obj.method(0,leftImage,rightImage,obj.arg);
+        end
+
+        function [obj,output]= manageServer(obj,operation,varargin)
+            if( 0 == isa(obj.arg,'tcpModual'))
+                fprintf("Camera has no server to manage\n")
+                output = 0;
+                return;
+            end
+            
+            switch (operation)
+                case "Start"
+                    obj.arg = obj.arg.startServer(varargin{:});
+                    output = 0;
+                case "Stop"
+                    obj.arg = obj.arg.stopServer();
+                    output = 0;
+                case "runLink"
+                    output = obj.arg.runLink(varargin{:});
+                    
             end
         end
-    end
-
-    methods(Access = private)
-
     end
 end
 

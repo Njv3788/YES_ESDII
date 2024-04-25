@@ -5,17 +5,17 @@ classdef tcpModual
     properties(Access = private)
         client;
         link;
-        type;
     end
     
     methods
-        function obj = tcpModual(client)
-            switch(client)
-                case "Unity"
-                    obj.link = @(C,P) unityLink(C,P);
-                    obj.type = "Unity";
-                otherwise 
-            end
+        function obj = tcpModual(link)
+            if (0 == isa(link,'function_handle'))
+                msgID = 'tcpModual:fail';
+                msgtxr = 'link must be a function handle';
+                ME = MException(msgID, msgtxr);
+                throw(ME)
+            end 
+            obj.link = link;
         end
         
         function obj = startServer(obj,ipAddress,ipPort)
@@ -31,13 +31,8 @@ classdef tcpModual
             delete(obj.client);
         end
         
-        function varargout = runLink(obj,varagin)
-            switch(obj.type)
-                case "Unity"
-                    pose = varagin;
-                    varargout{1} = obj.link(obj.client,pose);
-                otherwise 
-            end
+        function image = runLink(obj,pose)
+             image = obj.link(obj.client,pose);
         end
     end
 end

@@ -3,40 +3,50 @@ classdef cameraModual
     %   Detailed explanation goes here
     
     properties(Access = private)
-         type = "unInit";
          capture;
+         arg;
     end
     
     methods
-        function obj = cameraModual(camera)
-            switch(camera)
-                case "Unity"
-                    obj.type = "Unity";
-                    obj.capture = @(P,C)unityCapture(P,C);
-                case "Test"
-                    obj.type = "Test";
-                    obj.capture = @(L,R)testCapture(L,R);
-                otherwise
-                    fprintf("ERROR : UNRECONIZED CAMERA");
+        function obj = cameraModual(camera,arg)
+            if (0 == isa(camera,'function_handle'))
+                msgID = 'tcpModual:Fail';
+                msgtxr = 'link must be a function handle';
+                ME = MException(msgID, msgtxr);
+                throw(ME)
+            end 
+            
+            obj.capture = camera;
+            if(0 ~= isa(arg,'function_handle'))
+                obj.arg = tcpModual(arg);
+            else
+                obj.arg = arg;
             end
-        end
-        
-        function type = getType(obj)
-            type = obj.type;
         end
         
         function [leftImage,rightImage] = captureImage(obj,varargin)
-        % Use the objects capture to capture a image
-        % Each the type of camera have different pose requirement 
-            switch(obj.type)
-                case "Unity"
-                    [leftImage,rightImage] = obj.capture(varargin{1},varargin{2});
-                case "Test"
-                    [leftImage,rightImage] = obj.capture(varargin{1},varargin{2});
-                otherwise
-                    fprintf("ERROR : UNRECONIZED CAMERA");
+            [leftImage,rightImage] = obj.capture(obj.arg,varargin{:});
+        end
+
+        function [obj,output]= manageServer(obj,operation,varargin)
+            if( 0 == isa(obj.arg,'tcpModual'))
+                fprintf("Camera has no server to manage\n")
+                output = 0;
+                return;
             end
-        end 
+            
+            switch (operation)
+                case "Start"
+                    obj.arg = obj.arg.startServer(varargin{:});
+                    output = 0;
+                case "Stop"
+                    obj.arg = obj.arg.stopServer();
+                    output = 0;
+                case "runLink"
+                    output = obj.arg.runLink(varargin{:});
+                    
+            end
+        end
     end
 end
 
