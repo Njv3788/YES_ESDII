@@ -7,6 +7,7 @@ TagManager:
   - YellowBall
   - TennisBall
   - Ball
+  - SecondCamera
   layers:
   - Default
   - TransparentFX

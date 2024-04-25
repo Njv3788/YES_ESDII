@@ -15,7 +15,9 @@ public class Server : MonoBehaviour {
 
   //Camera Variables
   private GameObject MainCam;
+  private GameObject SecondCam;
   private GameObject Ball;
+
   RenderTexture CameraRender;
   byte[] EncodedPng;
   int Height;
@@ -31,12 +33,16 @@ public class Server : MonoBehaviour {
   private bool serverStarted;
 
   [Header("Game Object Settings")]
-  public string ObjectName = "";
-  //public Vector2 Resolution = new Vector2();
-  /////////////////////////////////////////////////////////////////////////////
-  
-  // Use this for initialization
-  void Start () {
+    public string MainCameraObj = "";
+    public string SecondCameraObj = "";
+    public string BallObj = "";
+  //public string ObjectName3 = "";
+
+    //public Vector2 Resolution = new Vector2();
+    /////////////////////////////////////////////////////////////////////////////
+
+    // Use this for initialization
+    void Start () {
     clients = new List<ServerClient>();
     disconnectIndex = new List<int>();
 
@@ -56,8 +62,15 @@ public class Server : MonoBehaviour {
   }
 
   private void UpdateLoop(){
-    if(this.MainCam == null)
-      this.MainCam = GameObject.FindGameObjectWithTag("MainCamera");
+    if (this.MainCam == null)
+    {
+        this.MainCam = GameObject.FindGameObjectWithTag("MainCamera");
+    }
+
+    if(this.SecondCam == null)
+    {
+       this.SecondCam = GameObject.FindGameObjectWithTag("SecondCamera");
+    }
 
     if(this.Ball == null)
     {
@@ -79,18 +92,31 @@ public class Server : MonoBehaviour {
       }
       // Check for data from client
       else {
-        float[] myFloat = new float[8];
+        float[] myFloat = new float[9];
         NetworkStream s = clients[c].tcp.GetStream();
         if (s.DataAvailable) {
-          byte[] RecievedString = new byte[sizeof(float)*8];
+          byte[] RecievedString = new byte[sizeof(float)*9];
 
           if (RecievedString != null){
-            s.Read(RecievedString, 0, sizeof(float)*8);
+            s.Read(RecievedString, 0, sizeof(float)*9);
             myFloat = ConvertBytes2Float(RecievedString);
 
-            moveBall(myFloat);
-                      
-            StartCoroutine(SendCamCapture(clients[c], MainCam.GetComponent<Camera>(), myFloat[0].ToString(), myFloat[1].ToString()));
+            moveCam(myFloat);
+
+              float selection = myFloat[8];
+
+              if (selection == 1)
+              {
+                StartCoroutine(SendCamCapture(clients[c], MainCam.GetComponent<Camera>(), myFloat[0].ToString(), myFloat[1].ToString()));
+              }
+              else if (selection == 2)
+              {
+                StartCoroutine(SendCamCapture(clients[c], SecondCam.GetComponent<Camera>(), myFloat[0].ToString(), myFloat[1].ToString()));
+              }
+              else
+              {
+                StartCoroutine(SendCamCapture(clients[c], MainCam.GetComponent<Camera>(), myFloat[0].ToString(), myFloat[1].ToString()));
+              }
           }
           s.Flush();
         }    
@@ -170,105 +196,165 @@ public class Server : MonoBehaviour {
     }
   }
 
-  // Matlab used NED right-handed coordinate system
-  // +x forward [optical axis]
-  // +y right
-  // +z down
+    // Matlab used NED right-handed coordinate system
+    // +x forward [optical axis]
+    // +y right
+    // +z down
 
-  // Unity uses a wild left-handed coordinate system
-  // +x right
-  // +y up
-  // +z forward [optical axis]
-  
-  //               matlab    unity
-  // forward         x        z
-  // right           y        x
-  // down            z        -y
-  
-  private void moveBall(float[] pose){
-    GameObject ClientObj = GameObject.Find(ObjectName);
-    // x,y,z,yaw[z],pitch[y],roll[x]
-    float x_trans = pose[2];
-    float y_trans = pose[3];
-    float z_trans = pose[4];
-    float z_rot = pose[5];
-    float y_rot = pose[6];
-    float x_rot = pose[7];
-    
-	Debug.Log("hello:" + x_trans);
-    //Vector3 matlabTranslate = new Vector3(y_trans, -z_trans, x_trans);
-	//Vector3 matlabTranslate = new Vector3(x_trans, y_trans, z_trans);
-    // perform translation
-    //ClientObj.transform.position = transform.TransformVector(matlabTranslate);
-    
-	//ClientObj.transform.position = ClientObj.transform.position + new Vector3(x_trans, y_trans, z_trans);
-    ClientObj.transform.position = new Vector3(x_trans, y_trans, z_trans);
+    // Unity uses a wild left-handed coordinate system
+    // +x right
+    // +y up
+    // +z forward [optical axis]
 
-	
-    // perform rotation in yaw, pitch, roll order while converting to left hand coordinate system.
-    //ClientObj.transform.rotation = Quaternion.AngleAxis(z_rot, Vector3.up) *       // yaw [z]
-    //                               Quaternion.AngleAxis(-y_rot, Vector3.right)*    // pitch [y]
-    //                               Quaternion.AngleAxis(-x_rot, Vector3.forward);  // roll [x]
-  }
-  
-  //Organizes and Sends Picture
-  IEnumerator SendCamCapture(ServerClient c, Camera CameraSelect, string Width, string Height){
-    CaptureImage(CameraSelect, int.Parse(Width), int.Parse(Height));
-    while (!this.CaptureDone()){
-      yield return null;
-    } 
-    OutgoingData(c, this.ReturnCaptureBytes());
-    Debug.Log("Captured Image");
-  }
+    //               matlab    unity
+    // forward         x        z
+    // right           y        x
+    // down            z        -y
+    private void moveBall(float[] pose)
+    {
+        GameObject ClientObj = GameObject.Find("Ball");
+        // x,y,z,yaw[z],pitch[y],roll[x]
+        float x_trans = pose[2];
+        float y_trans = pose[3];
+        float z_trans = pose[4];
+        float z_rot = pose[5];
+        float y_rot = pose[6];
+        float x_rot = pose[7];
 
-  IEnumerator GetRender(Camera cam){
-    this.CameraRender = new RenderTexture(this.Width, this.Height, 16);
-    cam.enabled = true;
-    cam.targetTexture = CameraRender;
-    Texture2D tempTex = new Texture2D(CameraRender.width, CameraRender.height, TextureFormat.RGB24, false);
-    cam.Render();
-    RenderTexture.active = CameraRender;//Sets the Render
-    tempTex.ReadPixels(new Rect(0, 0, CameraRender.width, CameraRender.height), 0, 0);
-    tempTex.Apply();
-    EncodedPng = tempTex.GetRawTextureData();
-    Destroy(tempTex);
-    yield return null;
-    CameraRender.Release();
-    cam.targetTexture = null;
-    ScreenshotDone = true;
-  }
+        Debug.Log("hello:" + x_trans);
+        //Vector3 matlabTranslate = new Vector3(y_trans, -z_trans, x_trans);
+        //Vector3 matlabTranslate = new Vector3(x_trans, y_trans, z_trans);
+        // perform translation
+        //ClientObj.transform.position = transform.TransformVector(matlabTranslate);
 
-  public void CaptureImage(Camera SelectedCamera, int UsrWidth, int UsrHeight){
-    ScreenshotDone = false;
-    this.Width = UsrWidth;
-    this.Height = UsrHeight;
+        //ClientObj.transform.position = ClientObj.transform.position + new Vector3(x_trans, y_trans, z_trans);
+        ClientObj.transform.position = new Vector3(x_trans, y_trans, z_trans);
 
-    if (SelectedCamera != null){
-        StartCoroutine(GetRender(SelectedCamera));
+
+        // perform rotation in yaw, pitch, roll order while converting to left hand coordinate system.
+        //ClientObj.transform.rotation = Quaternion.AngleAxis(z_rot, Vector3.up) *       // yaw [z]
+        //                               Quaternion.AngleAxis(-y_rot, Vector3.right)*    // pitch [y]
+        //                               Quaternion.AngleAxis(-x_rot, Vector3.forward);  // roll [x]
     }
-  }
+    private void moveCam(float[] pose)
+    {
+        GameObject ClientObj1 = GameObject.Find(MainCameraObj);
+        GameObject ClientObj2 = GameObject.Find(SecondCameraObj);
+        GameObject ClientObj3 = GameObject.Find(BallObj);
 
-  public int GetWidth(){
-    return this.Width;
-  }
+        // x,y,z,yaw[z],pitch[y],roll[x]
+        float x_trans = pose[2];
+        float y_trans = pose[3];
+        float z_trans = pose[4];
+        float z_rot = pose[5];
+        float y_rot = pose[6];
+        float x_rot = pose[7];
+        float selection = pose[8];
 
-  public int GetHeight(){
-    return this.Height;
-  }
+        Debug.Log("hello world");
 
-  public bool CaptureDone(){
-    return ScreenshotDone;
-  }
+        Vector3 matlabTranslate = new Vector3(y_trans, -z_trans, x_trans);
 
-  public byte[] ReturnCaptureBytes(){
-    return EncodedPng;
-  }
+        if (selection == 1)
+        {
+            // perform translation
+            ClientObj1.transform.position = transform.TransformVector(matlabTranslate);
 
-  IEnumerator SerializeCapture(ServerClient c, byte[] PixelData, int Width, int Length){
-    OutgoingData(c, PixelData);
-    yield return null;
-  }
-}
+            // perform rotation in yaw, pitch, roll order while converting to left hand coordinate system.
+            ClientObj1.transform.rotation = Quaternion.AngleAxis(z_rot, Vector3.up) *       // yaw [z]
+                                           Quaternion.AngleAxis(-y_rot, Vector3.right) *    // pitch [y]
+                                           Quaternion.AngleAxis(-x_rot, Vector3.forward);  // roll [x]
+        }
+        else if(selection == 2)
+        {
+            // perform translation
+            ClientObj2.transform.position = transform.TransformVector(matlabTranslate);
+
+            // perform rotation in yaw, pitch, roll order while converting to left hand coordinate system.
+            ClientObj2.transform.rotation = Quaternion.AngleAxis(z_rot, Vector3.up) *       // yaw [z]
+                                           Quaternion.AngleAxis(-y_rot, Vector3.right) *    // pitch [y]
+                                           Quaternion.AngleAxis(-x_rot, Vector3.forward);  // roll [x]    
+        }
+        else if (selection == 3)
+        {
+            // perform translation
+            ClientObj3.transform.position = transform.TransformVector(matlabTranslate);
+
+            // perform rotation in yaw, pitch, roll order while converting to left hand coordinate system.
+            ClientObj3.transform.rotation = Quaternion.AngleAxis(z_rot, Vector3.up) *       // yaw [z]
+                                           Quaternion.AngleAxis(-y_rot, Vector3.right) *    // pitch [y]
+                                           Quaternion.AngleAxis(-x_rot, Vector3.forward);  // roll [x]    
+        }
+        else
+        {
+            // perform translation
+            ClientObj1.transform.position = transform.TransformVector(matlabTranslate);
+
+            // perform rotation in yaw, pitch, roll order while converting to left hand coordinate system.
+            ClientObj1.transform.rotation = Quaternion.AngleAxis(z_rot, Vector3.up) *       // yaw [z]
+                                           Quaternion.AngleAxis(-y_rot, Vector3.right) *    // pitch [y]
+                                           Quaternion.AngleAxis(-x_rot, Vector3.forward);  // roll [x]    
+        }
+
+    }
+        //Organizes and Sends Picture
+        IEnumerator SendCamCapture(ServerClient c, Camera CameraSelect, string Width, string Height) {
+            CaptureImage(CameraSelect, int.Parse(Width), int.Parse(Height));
+            while (!this.CaptureDone()) {
+                yield return null;
+            }
+            OutgoingData(c, this.ReturnCaptureBytes());
+            Debug.Log("Captured Image");
+        }
+
+        IEnumerator GetRender(Camera cam) {
+            this.CameraRender = new RenderTexture(this.Width, this.Height, 16);
+            cam.enabled = true;
+            cam.targetTexture = CameraRender;
+            Texture2D tempTex = new Texture2D(CameraRender.width, CameraRender.height, TextureFormat.RGB24, false);
+            cam.Render();
+            RenderTexture.active = CameraRender;//Sets the Render
+            tempTex.ReadPixels(new Rect(0, 0, CameraRender.width, CameraRender.height), 0, 0);
+            tempTex.Apply();
+            EncodedPng = tempTex.GetRawTextureData();
+            Destroy(tempTex);
+            yield return null;
+            CameraRender.Release();
+            cam.targetTexture = null;
+            ScreenshotDone = true;
+        }
+
+        public void CaptureImage(Camera SelectedCamera, int UsrWidth, int UsrHeight) {
+            ScreenshotDone = false;
+            this.Width = UsrWidth;
+            this.Height = UsrHeight;
+
+            if (SelectedCamera != null) {
+                StartCoroutine(GetRender(SelectedCamera));
+            }
+        }
+
+        public int GetWidth() {
+            return this.Width;
+        }
+
+        public int GetHeight() {
+            return this.Height;
+        }
+
+        public bool CaptureDone() {
+            return ScreenshotDone;
+        }
+
+        public byte[] ReturnCaptureBytes() {
+            return EncodedPng;
+        }
+
+        IEnumerator SerializeCapture(ServerClient c, byte[] PixelData, int Width, int Length) {
+            OutgoingData(c, PixelData);
+            yield return null;
+        }
+    }
 
 public class ServerClient {
   public TcpClient tcp;
