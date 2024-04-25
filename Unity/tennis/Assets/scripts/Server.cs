@@ -69,7 +69,7 @@ public class Server : MonoBehaviour {
 
     if(this.SecondCam == null)
     {
-       this.Ball = GameObject.FindGameObjectWithTag("SecondCamera");
+       this.SecondCam = GameObject.FindGameObjectWithTag("SecondCamera");
     }
 
     if(this.Ball == null)
@@ -112,10 +112,6 @@ public class Server : MonoBehaviour {
               else if (selection == 2)
               {
                 StartCoroutine(SendCamCapture(clients[c], SecondCam.GetComponent<Camera>(), myFloat[0].ToString(), myFloat[1].ToString()));
-              }
-              else if (selection == 3)
-              {
-                StartCoroutine(SendCamCapture(clients[c], Ball.GetComponent<Camera>(), myFloat[0].ToString(), myFloat[1].ToString()));
               }
               else
               {
@@ -200,21 +196,46 @@ public class Server : MonoBehaviour {
     }
   }
 
-  // Matlab used NED right-handed coordinate system
-  // +x forward [optical axis]
-  // +y right
-  // +z down
+    // Matlab used NED right-handed coordinate system
+    // +x forward [optical axis]
+    // +y right
+    // +z down
 
-  // Unity uses a wild left-handed coordinate system
-  // +x right
-  // +y up
-  // +z forward [optical axis]
-  
-  //               matlab    unity
-  // forward         x        z
-  // right           y        x
-  // down            z        -y
+    // Unity uses a wild left-handed coordinate system
+    // +x right
+    // +y up
+    // +z forward [optical axis]
 
+    //               matlab    unity
+    // forward         x        z
+    // right           y        x
+    // down            z        -y
+    private void moveBall(float[] pose)
+    {
+        GameObject ClientObj = GameObject.Find("Ball");
+        // x,y,z,yaw[z],pitch[y],roll[x]
+        float x_trans = pose[2];
+        float y_trans = pose[3];
+        float z_trans = pose[4];
+        float z_rot = pose[5];
+        float y_rot = pose[6];
+        float x_rot = pose[7];
+
+        Debug.Log("hello:" + x_trans);
+        //Vector3 matlabTranslate = new Vector3(y_trans, -z_trans, x_trans);
+        //Vector3 matlabTranslate = new Vector3(x_trans, y_trans, z_trans);
+        // perform translation
+        //ClientObj.transform.position = transform.TransformVector(matlabTranslate);
+
+        //ClientObj.transform.position = ClientObj.transform.position + new Vector3(x_trans, y_trans, z_trans);
+        ClientObj.transform.position = new Vector3(x_trans, y_trans, z_trans);
+
+
+        // perform rotation in yaw, pitch, roll order while converting to left hand coordinate system.
+        //ClientObj.transform.rotation = Quaternion.AngleAxis(z_rot, Vector3.up) *       // yaw [z]
+        //                               Quaternion.AngleAxis(-y_rot, Vector3.right)*    // pitch [y]
+        //                               Quaternion.AngleAxis(-x_rot, Vector3.forward);  // roll [x]
+    }
     private void moveCam(float[] pose)
     {
         GameObject ClientObj1 = GameObject.Find(MainCameraObj);
