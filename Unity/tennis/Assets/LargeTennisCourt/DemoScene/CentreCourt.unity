@@ -762,7 +762,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 33893929662411408, guid: e96d061469b36a74ba587cce050f8663, type: 3}
       propertyPath: m_Name
-      value: TennisBall
+      value: Ball
       objectReference: {fileID: 0}
     - target: {fileID: 33893929662411408, guid: e96d061469b36a74ba587cce050f8663, type: 3}
       propertyPath: m_IsActive
@@ -1446,7 +1446,7 @@ GameObject:
   - component: {fileID: 1759276398}
   - component: {fileID: 1759276397}
   m_Layer: 0
-  m_Name: cam2
+  m_Name: secondCamera
   m_TagString: SecondCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
