@@ -38,9 +38,9 @@ classdef eyesAPI
                 case "Unity"
                     switch (operation)
                         case "Start"
-                            obj.unityClient.startServer(varargin{:});
+                            obj.unityClient = obj.unityClient.startServer(varargin{:});
                         case "Stop"
-                            obj.unityClient.stopServer();
+                            obj.unityClient = obj.unityClient.stopServer();
                         case "runLink"
                             obj.unityClient.runLink(varargin{:});
                     end

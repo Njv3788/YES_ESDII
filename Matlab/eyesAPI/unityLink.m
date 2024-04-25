@@ -1,7 +1,7 @@
 function image = unityLink(TCP_Handle,pose)
     % x,y,z,yaw[z],pitch[y],roll[x]
     
-    width  = 640;
+    width  = 752;
     height = 480;
     
     x = pose(1);
@@ -10,7 +10,7 @@ function image = unityLink(TCP_Handle,pose)
     yaw = pose(4);
     pitch = pose(5);
     roll = pose(6);
-    if(exist('TCP_Handle','var') ~= 0)
+    if(size(TCP_Handle,1) == 0)
        image = 0;
        return;
     end  %Set Position
