@@ -20,6 +20,17 @@ camWriter = ImageWriter()
 npSocket = NumpySocket()
 npSocket.startServer(9999)
 
+def processImage(Image)
+    tempHLeft,tempHRight = camFeedthrough.getStereoHorzontial()
+    tempVLeft,tempVRight = camFeedthrough.getStereoHorzontial()
+    vLeft = np.ascontiguousarray(tempVLeft, dtype=np.uint8).veiw(uint16)
+    vRight = np.ascontiguousarray(tempVRight, dtype=np.uint8).veiw(uint16)
+    hLeft = np.ascontiguousarray(tempHLeft, dtype=np.uint8).veiw(uint16) 
+    hRight = np.ascontiguousarray(tempHRight, dtype=np.uint8).veiw(uint16)
+
+    return vLeft, vRight, hLeft, hRight
+
+
 # only set this flag to true if you have generated your bit file with a 
 # Vivado reference design for Simulink
 simulink = True    
@@ -41,27 +52,30 @@ if simulink == True:
 
 print "entering main loop"
 
+
 # feel free to modify this command structue as you wish.  It might match the 
 # command structure that is setup in the Matlab side of things on the host PC.
-while(1):
+while (1)
+    # Receive command
     cmd = npSocket.receiveCmd()
-    #print(cmd)
+    
+    # Check the received command and perform actions accordingly
     if cmd == '0':
+        # If command is '0', receive data and set frame
         data = npSocket.receive()
         camWriter.setFrame(data)
+        # Send a response (e.g., acknowledgment)
         npSocket.send(np.array(2))
     elif cmd == '1':
-        frameLeft,frameRight = camFeedthrough.getStereoGray()
-        tempImageLeft = np.ascontiguousarray(frameLeft, dtype=np.uint8) 
-        tempImageRight = np.ascontiguousarray(frameRight, dtype=np.uint8) 
-        npSocket.send(tempImageLeft)
-        npSocket.send(tempImageRight)
+        # If command is '1', process image and obtain calibration values
+        calibrationValue = processImage(ImageProcessing)
     elif cmd == '2':
-        frameLeft,frameRight = camProcessed.getStereoGray()
-        tempImageLeft = np.ascontiguousarray(frameLeft, dtype=np.uint8) 
-        tempImageRight = np.ascontiguousarray(frameRight, dtype=np.uint8) 
-        npSocket.send(tempImageLeft)
-        npSocket.send(tempImageRight) 
+        # If command is '2', process image and calculate differences
+        normalizedValue = processImage(ImageProcessing)
+        differentialValue = np.subtract(normalizedValue,calibrationValue)
+        maxValue = [np.argmax(arr) for arr in differentialValues]
+        npSocket.send(maxValue)
     else:
+        # If command is not recognized, break out of the loop
         break
 npSocket.close()

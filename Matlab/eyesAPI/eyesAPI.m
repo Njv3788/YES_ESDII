@@ -36,7 +36,7 @@ classdef eyesAPI
                 case 'camera'
                     obj.camera = obj.camera.manageServer(operation,varargin{:});
                 case 'method'
-                    obj.camera = obj.camera.manageServer(operation,varargin{:});
+                    obj.method = obj.method.manageServer(operation,varargin{:});
                 otherwise
                     fprintf("Unreconized type\n");
                     return;
