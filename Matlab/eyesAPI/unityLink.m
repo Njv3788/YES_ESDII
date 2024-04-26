@@ -1,20 +1,14 @@
-function image = unityLink(TCP_Handle,pose)
+function image = unityLink(TCP_Handle,pose,selection)
     % x,y,z,yaw[z],pitch[y],roll[x]
     
     width  = 752;
     height = 480;
     
-    x = pose(1);
-    y = pose(2);
-    z = pose(3);
-    yaw = pose(4);
-    pitch = pose(5);
-    roll = pose(6);
     if(size(TCP_Handle,1) == 0)
        image = 0;
        return;
     end  %Set Position
-    write(TCP_Handle,single([width,height,x,y,z,yaw,pitch,roll]));
+    write(TCP_Handle,single([width,height,pose,selection]));
     
     %Get image data
     data = read(TCP_Handle,width*height*3);

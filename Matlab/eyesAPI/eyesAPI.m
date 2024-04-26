@@ -31,12 +31,12 @@ classdef eyesAPI
             center = obj.method.track(leftImage,rightImage);
         end
 
-        function obj = manageClient(obj,type,operation,varargin)
+        function obj = manageServer(obj,type,operation,varargin)
             switch(type)
                 case 'camera'
-                    obj.camera = obj.camera.mangeServer(operation,varargin);
+                    obj.camera = obj.camera.manageServer(operation,varargin{:});
                 case 'method'
-                    obj.camera = obj.camera.mangeServer(operation,varargin);
+                    obj.camera = obj.camera.manageServer(operation,varargin{:});
                 otherwise
                     fprintf("Unreconized type\n");
                     return;

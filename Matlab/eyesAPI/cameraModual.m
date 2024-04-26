@@ -7,7 +7,7 @@ classdef cameraModual
          arg;
     end
     
-    methods
+    methods(Access = public)
         function obj = cameraModual(camera,arg)
             if (0 == isa(camera,'function_handle'))
                 msgID = 'tcpModual:Fail';

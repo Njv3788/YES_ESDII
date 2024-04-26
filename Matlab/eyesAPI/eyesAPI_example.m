@@ -30,18 +30,26 @@
     method = @(L,R,S,C) MATLABmethod(L,R,S,C);
     mArg = [-2,-2];
     camera = @(C,P) unityCamera(C,P);
-    cArg = @(T,P) unityLink(T,P);
+    cArg = @(T,P,S) unityLink(T,P,S);
+    pose = [0.5,0,-23,90,-90,0;
+            -0.5,0,-23,90,-90,0];
+    trajectory = importdata(file);
 % Initialize
     api = eyesAPI(method,camera,mArg,cArg);
-    api = api.manageClient("Unity","Start",server_ip,server_port); 
-    trajectory = importdata(file);
-    api.calibrate([0,0,0,0,0,0]);
+    api = api.manageServer('camera',"Start",server_ip,server_port); 
+    api = api.manageServer('camera',"runLink",[0,0,0,0,0,0],3);
+    api.calibrate(pose);
     for i = 1:size(trajectory,1)
         x = trajectory(i,1);
         y = trajectory(i,2);
         z = trajectory(i,3);
-        [C,leftImage,~] = api.track([x,y,z,0,0,0]);
-        imshow(leftImage); 
+        api = api.manageServer('camera',"runLink",[z,x,-y,0,0,0],3);
+        [C,leftImage,rightImage] = api.track(pose);
+        figure(1);
+        subplot(1,2,1);imshow(leftImage); 
         viscircles(C(:,1)', 10,'EdgeColor','b');
+        subplot(1,2,2);imshow(rightImage); 
+        viscircles(C(:,2)', 10,'EdgeColor','b');
+
     end
-    api = api.manageClient("Unity","Stop");
+    api = api.manageClient("Unity","Stop");S
