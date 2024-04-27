@@ -40,25 +40,21 @@ while ~feof(serve1_postions)
 %     
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % left camera
+    % left camera (Second Camera)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % z,x,y, y rot, x rot, z rot 
-    %x,y,z,yaw[z],pitch[y],roll[x],selection
-    
-    %y,z,x
-    pose = [-9.43,1.8,1.73,0,-90,-90,2];
+    pose = [-2,0,-20,270,270,0,2];
     unityImageLeft = unityLink(client,pose);
     subplot(1,2,1)
     imshow(unityImageLeft);
    
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-    % right camera
+    % right camera (Main Camera)
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % z,x,y, y rot, x rot, z rot
     
-    %y,z,x
-    pose = [-9.43,1.82,2.66,0,-90, 0,1];
+    pose = [2,0,-20,90,270, 0,1];
     unityImageRight = unityLink(client,pose);  
     subplot(1,2,2)
     imshow(unityImageRight);
