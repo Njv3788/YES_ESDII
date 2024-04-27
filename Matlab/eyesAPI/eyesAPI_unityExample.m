@@ -9,7 +9,8 @@
     mArg = [-2,-2];
     camera = @(C,P) unityCamera(C,P);
     cArg = @(T,P,S) unityLink(T,P,S);
-    pose = [ 0.5,0,-20,90,-90,0;-0.5,0,-20,90,-90,0];
+    pose = [ 0.5,0,-15,90,-90,0;
+            -0.5,0,-15,90,-90,0];
     trajectory = importdata(file);
 % Initialize
     api = eyesAPI(method,camera,mArg,cArg);
@@ -22,5 +23,11 @@
         z = trajectory(i,3);
         api = api.manageServer('camera',"runLink",[z,x,-y,0,0,0],3);
         [C,leftImage,rightImage] = api.track(pose);
+        figure(1); subplot(1,2,1);
+        imshow(leftImage); 
+        viscircles(C(:,1)', 3,'EdgeColor','b');
+        figure(1); subplot(1,2,2);
+        imshow(rightImage); 
+        viscircles(C(:,2)', 3,'EdgeColor','b');
     end
     api = api.manageClient("Unity","Stop");
