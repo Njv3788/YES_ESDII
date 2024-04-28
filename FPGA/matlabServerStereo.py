@@ -23,10 +23,10 @@ npSocket.startServer(9999)
 def processImage()
     tempHLeft, tempHRight = camFeedthrough.getStereoHorzontial()
     tempVLeft, tempVRight = camFeedthrough.getStereoVertical()  # Assuming this is the correct method
-    vLeft = np.ascontiguousarray(tempVLeft, dtype=np.uint8).view(np.uint16)  # Corrected dtype and view method
-    vRight = np.ascontiguousarray(tempVRight, dtype=np.uint8).view(np.uint16)
-    hLeft = np.ascontiguousarray(tempHLeft, dtype=np.uint8).view(np.uint16) 
-    hRight = np.ascontiguousarray(tempHRight, dtype=np.uint8).view(np.uint16)
+    vLeft = np.ascontiguousarray(tempVLeft, dtype=np.uint8).view(np.int16)  # Corrected dtype and view method
+    vRight = np.ascontiguousarray(tempVRight, dtype=np.uint8).view(np.int16)
+    hLeft = np.ascontiguousarray(tempHLeft, dtype=np.uint8).view(np.int16) 
+    hRight = np.ascontiguousarray(tempHRight, dtype=np.uint8).view(np.int16)
     return vLeft, vRight, hLeft, hRight
 
 
@@ -68,13 +68,15 @@ while (1)
     elif cmd == '1':
         # If command is '1', process image and obtain calibration values
         calibrationValue = processImage()
-        maxValue = [np.argmax(arr) for arr in calibrationValue]
+        absoluteValue = np.absolute(calibrationValue,calibrationValue,dtype=np.int16)
+        maxValue = [np.argmax(arr) for arr in absoluteValue]
         npSocket.send(maxValue)
     elif cmd == '2':
         # If command is '2', process image and calculate differences
         normalizedValue = processImage()
-        differentialValue = np.subtract(normalizedValue,calibrationValue,dtype=np.uint16)
-        maxValue = [np.argmax(arr) for arr in differentialValues]
+        differentialValue = np.subtract(normalizedValue,calibrationValue,dtype=np.int16)
+        absoluteValue = np.absolute(differentialValue,calibrationValue,dtype=np.int16)
+        maxValue = [np.argmax(arr) for arr in absoluteValue]
         npSocket.send(maxValue)
     else:
         # If command is not recognized, break out of the loop
