@@ -35,6 +35,6 @@ function center = MATLABmethod(calibrate,leftImageRGB,rightImageRGB,shift)
         difference = abs(initial - normal);     % subtract from intial
         [~,idx]= max(difference,[],2);          % find the index of peaks
                                                 % convert uint16
-        center = uint16([idx(1) idx(3);idx(2) idx(4)]);           
+        center = uint16(idx);           
     end
 end

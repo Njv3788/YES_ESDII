@@ -32,12 +32,12 @@
             continue;
         end
 
-        figure(1);subplot(1,2,1);
-        imshow(leftImage); 
-        viscircles(C(:,1)', 3,'EdgeColor','b');
-        figure(1); subplot(1,2,2);
-        imshow(rightImage); 
-        viscircles(C(:,2)', 3,'EdgeColor','b');
+        % figure(1);subplot(1,2,1);
+        % imshow(leftImage); 
+        % viscircles(C(:,1)', 3,'EdgeColor','b');
+        % figure(1); subplot(1,2,2);
+        % imshow(rightImage); 
+        % viscircles(C(:,2)', 3,'EdgeColor','b');
     end
     api = api.manageServer('camera',"Stop");
     api = api.manageServer('method',"Stop");
