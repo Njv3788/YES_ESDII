@@ -1,3 +1,17 @@
-function [x,y,z,dt] = zynqLink(TCP_Handle,opCode)
-end
+function revData = zynqLink(TCP_Handle,cmd,inData)
+    write(TCP_Handle,'0');
+    flush(TCP_Handle);
+    
+    write(TCP_Handle,inData)
+    
+    switch(cmd)
+        case 0
+            write(TCP_Handle,'2')
+            flush(TCP_Handle);
+        case 1
+            write(TCP_Handle,'1');
+            flush(TCP_Handle); 
+    end
+    revData = read(TCP_Handle,4,'uint16');
+end 
 
