@@ -25,7 +25,7 @@ classdef eyesAPI
             [leftImage,rightImage] = obj.camera.captureImage(varargin{:});
             if(6 ~= obj.imageLoad(leftImage,rightImage))
                 fprintf('ERROR : Image not captured properly\n');
-                center = nan;
+                center = intmax('int16');
                 return;
             end
             center = obj.method.track(leftImage,rightImage);

@@ -1,4 +1,9 @@
 function revData = zynqLink(TCP_Handle,cmd,inData)
+    if(size(TCP_Handle,1) == 0)
+       revData = intmax('int16');
+       return;
+    end
+
     write(TCP_Handle,'0');
     flush(TCP_Handle);
     

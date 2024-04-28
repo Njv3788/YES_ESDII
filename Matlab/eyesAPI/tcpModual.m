@@ -31,8 +31,8 @@ classdef tcpModual
             delete(obj.client);
         end
         
-        function image = runLink(obj,varargin)
-             image = obj.link(obj.client,varargin{:});
+        function revData= runLink(obj,varargin)
+             revData = obj.link(obj.client,varargin{:});
         end
     end
 end
