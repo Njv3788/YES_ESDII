@@ -1,5 +1,8 @@
 function [center] = zynqMethod(calibrate,leftImageRGB,rightImageRGB,client)
   
+    width  = 814;
+    height = 573;
+
     leftImageRGB = uint8(leftImageRGB);
     rightImageRGB = uint8(rightImageRGB);
     leftImageGray = im2gray(leftImageRGB);

@@ -12,7 +12,7 @@
     camera = @(A,L,R) testCamera(A,L,R);
     cArg = 0;
 % Initialize
-    api = eyesAPI(method,camera,mArg,0);
+    api = eyesAPI(method,camera,mArg,cArg);
     api = api.manageServer('method',"Start",server_ip,server_port);
     name = path+file(1)+tag;
     api.calibrate(name,name);
@@ -30,4 +30,4 @@
       imshow(leftImage); 
       viscircles(C(:,1)', 3,'EdgeColor','b');
   end
-  api = api.manageClient('method',"Stop");
+  api = api.manageServer('method',"Stop");

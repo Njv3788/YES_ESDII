@@ -35,7 +35,7 @@ classdef methodModual
 
         function [obj,output]= manageServer(obj,operation,varargin)
             if( 0 == isa(obj.arg,'tcpModual'))
-                fprintf("Camera has no server to manage\n")
+                fprintf("Method has no server to manage\n")
                 output = 0;
                 return;
             end

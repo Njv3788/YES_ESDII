@@ -8,7 +8,7 @@
     method = @(L,R,S,C) MATLABmethod(L,R,S,C);
     mArg = [-2,-2];
     camera = @(C,P) unityCamera(C,P);
-    cArg = @(C,P) unityCamera(C,P);
+    cArg = @(T,P,S) unityLink(T,P,S);
     pose = [ 0.5,0,-15,90,-90,0;
             -0.5,0,-15,90,-90,0];
     trajectory = importdata(file);
@@ -37,4 +37,4 @@
         imshow(rightImage); 
         viscircles(C(:,2)', 3,'EdgeColor','b');
     end
-    api = api.manageClient('camera',"Stop");
+    api = api.manageServer('camera',"Stop");
