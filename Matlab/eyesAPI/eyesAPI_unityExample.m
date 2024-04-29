@@ -24,4 +24,4 @@
     run("modifyScript.m");
     run("trajectoryScript.m");
     api = api.manageServer('camera',"Stop");
-    writematrix(traceFound, '../flightPaths/volley5.dat');
+    writematrix(traceFound, '../pathFlight/volley5.dat');
