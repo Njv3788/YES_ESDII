@@ -36,8 +36,8 @@ while ~feof(serve1_postions)
     z = coordinates(3);
     
     %x,y,z,yaw[z],pitch[y],roll[x],selection
-    pose = [x,y,z,0,0,0,selection];
-    
+    ballPose = [z,x,y,0,0,0,selection];
+    unityLink(client,ballPose);
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % left camera (Second Camera)
