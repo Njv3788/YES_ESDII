@@ -18,7 +18,7 @@ serve1_postions = fopen('serve1.dat','r');
 % 1 = MainCamera
 % 2 = SecondCamera
 % 3 = Ball
-selection = 1;
+selection = 3;
 
 %pose(7) = selection;
 while ~feof(serve1_postions)
@@ -29,15 +29,15 @@ while ~feof(serve1_postions)
     
     
     
-%     coordinates = str2num(line);  %coordinates are separated by spaces
-%     
-%     x = coordinates(1);
-%     y = coordinates(2);
-%     z = coordinates(3);
-%     
-%     %x,y,z,yaw[z],pitch[y],roll[x],selection
-%     pose = [x,y,z,0,0,0,selection];
-%     
+    coordinates = str2num(line);  %coordinates are separated by spaces
+    
+    x = coordinates(1);
+    y = coordinates(2);
+    z = coordinates(3);
+    
+    %x,y,z,yaw[z],pitch[y],roll[x],selection
+    pose = [x,y,z,0,0,0,selection];
+    
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % left camera (Second Camera)
