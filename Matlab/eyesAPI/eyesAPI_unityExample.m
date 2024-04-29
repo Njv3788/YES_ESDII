@@ -1,8 +1,10 @@
 %% Unity Example
     clc
     clear
+% Addpaths
+    addpath("../eyesAPI");
+    addpath("../scripts");
 % Declarations 
-    file = "../trajectories/volley1.dat";
     server_ip   = '127.0.0.1';     % IP address of the Unity Server
     server_port = 55001;           % Server Port of the Unity Sever
     method = @(L,R,S,C) MATLABmethod(L,R,S,C);
@@ -11,9 +13,9 @@
     cArg = @(T,P,S) unityLink(T,P,S);
     pose = [ 0.1,0,-23,90,-90,0;
             -0.1,0,-23,90,-90,0];
-    trajectory = importdata(file);
+    trajectory = importdata("../trajectories/volley5.dat");
     traceFound = zeros(size(trajectory,1),size(trajectory,2)+1);
-    showImages = false;
+    showImages = true;
 % Initialize
     api = eyesAPI(method,camera,mArg,cArg);
     api = api.manageServer('camera',"Start",server_ip,server_port); 
@@ -22,3 +24,4 @@
     run("modifyScript.m");
     run("trajectoryScript.m");
     api = api.manageServer('camera',"Stop");
+    writematrix(traceFound, '../flightPaths/volley5.dat');

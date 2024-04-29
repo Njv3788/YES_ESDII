@@ -12,7 +12,7 @@ if ( 0 == isa(cArg,'function_handle'))
         end
     end
 else
-    for i = 1:size(trajectory,1)/4
+    for i = 1:size(trajectory,1)
         fprintf(fid,"api = api.manageServer('camera',""runLink"",");
         fprintf(fid,"[%d,%d,%d,0,0,0],3);\n",trajectory(i,3),trajectory(i,1),-trajectory(i,2));
         fprintf(fid,"[C,leftImage,rightImage] = api.track(pose);\n");
