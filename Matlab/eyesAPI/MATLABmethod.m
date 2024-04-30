@@ -3,7 +3,7 @@ function center = MATLABmethod(calibrate,leftImageRGB,rightImageRGB,shift)
     persistent initial;
     type = "uint32";
     size_t = 1024;
-  
+    tic;
     leftImageGray = rgb2gray(leftImageRGB);    % convert to grayscale
     rightImageGray = rgb2gray(rightImageRGB);  % convert to grayscale
     leftImageGrayU32 = uint32(leftImageGray);  % convert unit8 to uint32
@@ -35,6 +35,6 @@ function center = MATLABmethod(calibrate,leftImageRGB,rightImageRGB,shift)
         difference = abs(initial - normal);     % subtract from intial
         [~,idx]= max(difference,[],2);          % find the index of peaks
                                                 % convert uint16
-        center = uint16(idx);           
+        center = [int32(idx);1e6*toc];           
     end
 end

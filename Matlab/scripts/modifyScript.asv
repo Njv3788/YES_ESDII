@@ -6,7 +6,7 @@ if ( 0 == isa(cArg,'function_handle'))
         fprintf(fid,"name = path+file(%d);\n",i);
         fprintf(fid,"[C,leftImage,~] = api.track(name,name);\n");
         if(showImages == true)
-            fprintf(fid,"figure(imfig);imshow(leftImage);");
+            fprintf(fid,"figure();imshow(leftImage);");
             fprintf(fid,"viscircles(C(1:2)', 3,'EdgeColor','b');\n");
             fprintf(fid,"pause(1)\n");
         end
