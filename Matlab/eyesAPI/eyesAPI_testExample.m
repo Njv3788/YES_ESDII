@@ -9,6 +9,7 @@
     file = ["ball_n.jpg","ball_0.jpg","ball_2.jpg","ball_3.jpg"];
     method = @(C,S,L,R) MATLABmethod(C,S,L,R);
     camera = @(A,L,R) testCamera(A,L,R);
+    imfig = figure(1);
     cArg = 0;
     showImages = true;
 % Initialize

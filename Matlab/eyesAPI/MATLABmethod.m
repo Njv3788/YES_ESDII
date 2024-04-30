@@ -26,8 +26,7 @@ function center = MATLABmethod(calibrate,leftImageRGB,rightImageRGB,shift)
     normal (2,:) = bitshift(character(2,:),shift(2));
     normal (3,:) = bitshift(character(3,:),shift(1));
     normal (4,:) = bitshift(character(4,:),shift(2));
-    normal = int16(normal);                     % convert int32 to uint32
-    normal = swapbytes(normal);
+    normal = int32(normal);                     % convert int32 to uint32
     if(calibrate == 1)  
         initial = normal;                       % Assign to calibrate 
         center = [];                            % blow away the Center 

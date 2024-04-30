@@ -20,6 +20,6 @@ function [center] = zynqMethod(calibrate,leftImageRGB,rightImageRGB,client)
         center = idx;
         return;
     end
-    center = reshape(idx,[2,2]);           
+    center = idx;           
 end
 
