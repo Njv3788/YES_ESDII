@@ -37,7 +37,6 @@ while ~feof(serve1_postions)
     
     %x,y,z,yaw[z],pitch[y],roll[x],selection
     ballPose = [z,x,y,0,0,0,selection];
-    replay = [z,x,y,0,0,0,selection];
     unityLink(client,ballPose);
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
