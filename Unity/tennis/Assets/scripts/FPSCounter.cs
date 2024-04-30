@@ -57,7 +57,8 @@ public class FPSCounter : MonoBehaviour
         if (timeleft <= 0.0)
         {
             // display two fractional digits (f2 format)
-            fps = (accum / frames);
+            fps = Mathf.Round(accum / frames);
+
             timeleft = updateInterval;
             accum = 0.0f;
             frames = 0;
