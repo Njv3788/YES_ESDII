@@ -1,9 +1,11 @@
 %% Unity Example
     clc
     clear
+% Addpaths
+    addpath("../eyesAPI");
+    addpath("../scripts");
 % Declarations 
-    path = "../../algorithms/Algro_test/TestImages/testImage_";
-    file = ["ball_n","ball_0","ball_2","ball_3"];
+    file = ["leftCal.png","rightCal.png","leftImage.png","rightImage.png"];
     tag = ".jpg";
     server_ip   = '127.0.0.1';     % IP address of the Unity Server
     server_port = 55001;           % Server Port of the Unity Sever
@@ -15,7 +17,6 @@
 % Initialize
     api = eyesAPI(method,camera,mArg,cArg);
     api = api.manageServer('method',"Start",server_ip,server_port);
-    name = path+file(1)+tag;
     api.calibrate(name,name);
 % Track
     run("modifyScript.m");

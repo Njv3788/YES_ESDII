@@ -68,14 +68,14 @@ while (1)
     elif cmd == '1':
         # If command is '1', process image and obtain calibration values
         calibrationValue = processImage()
-        absoluteValue = np.absolute(calibrationValue,calibrationValue,dtype=np.int16)
+        absoluteValue = np.absolute(calibrationValue,dtype=np.int16)
         maxValue = [np.argmax(arr) for arr in absoluteValue]
         npSocket.send(maxValue)
     elif cmd == '2':
         # If command is '2', process image and calculate differences
         normalizedValue = processImage()
         differentialValue = np.subtract(normalizedValue,calibrationValue,dtype=np.int16)
-        absoluteValue = np.absolute(differentialValue,calibrationValue,dtype=np.int16)
+        absoluteValue = np.absolute(differentialValue,dtype=np.int16)
         maxValue = [np.argmax(arr) for arr in absoluteValue]
         npSocket.send(maxValue)
     else:

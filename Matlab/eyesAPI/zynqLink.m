@@ -7,7 +7,8 @@ function revData = zynqLink(TCP_Handle,cmd,inData)
     write(TCP_Handle,'0');
     flush(TCP_Handle);
     
-    write(TCP_Handle,inData)
+    write(TCP_Handle,inData(:))
+    [~] = read(TCP_Handle,1);
     
     switch(cmd)
         case 0

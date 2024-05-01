@@ -7,7 +7,7 @@ if ( 0 == isa(cArg,'function_handle'))
         fprintf(fid,"[C,leftImage,~] = api.track(name,name);\n");
         if(showImages == true)
             fprintf(fid,"figure(imfig);imshow(leftImage);");
-            fprintf(fid,"viscircles(C(1:2)', 3,'EdgeColor','b');\n");
+            fprintf(fid,"viscircles(C(1:2), 3,'EdgeColor','b');\n");
             fprintf(fid,"pause(1)\n");
         end
     end
@@ -20,9 +20,9 @@ else
         if(showImages == true)
             fprintf(fid,"figure(imfig);\n");
             fprintf(fid,"subplot(1,2,1);imshow(leftImage);\n");
-            fprintf(fid,"viscircles(C(1:2)', 3,'EdgeColor','b');\n");
+            fprintf(fid,"viscircles(C(1:2), 3,'EdgeColor','b');\n");
             fprintf(fid,"subplot(1,2,2);imshow(rightImage);\n");
-            fprintf(fid,"viscircles(C(3:4)', 3,'EdgeColor','b');\n");
+            fprintf(fid,"viscircles(C(3:4), 3,'EdgeColor','b');\n");
         end
     end
 end 

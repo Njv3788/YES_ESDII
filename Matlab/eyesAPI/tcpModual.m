@@ -22,7 +22,7 @@ classdef tcpModual
             try
                 obj.client = tcpclient(ipAddress,ipPort);
             catch
-                fprintf("ERROR : Unable to connect\n");
+                fprintf("ERROR : Unable to connect %d\n",ipPort);
                 delete(obj.client);
             end
         end
